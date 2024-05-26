@@ -42,43 +42,46 @@ int qst_nbManches(){
 // Question déplacement robots
 char qst_depRobots(int n){
 	char dep_Robots;
-    int s;
-    printf(ESPACE);
-    if (n == 1){
-    	printf("Entrer le 1er déplacement : ");
-    }
-    else{
-    	printf("Entrer le %dème déplacement : ", n);
-    }
-    videScanf();
-    s = scanf("%c", &dep_Robots);
-    while (s != 1 || (dep_Robots != 'Z' && dep_Robots != 'z'
-        && dep_Robots != 'S' && dep_Robots != 's'
-        && dep_Robots != 'Q' && dep_Robots != 'q'
-        && dep_Robots != 'D' && dep_Robots != 'd')){
-    	effacer_ligne();
-    	if (s != 1){
-		    printf(ESPACE);
-		    printf("Entrée incorrecte. Réessayez : ");
-		    videScanf();
-		    s = scanf("%c", &dep_Robots);
+    	int s;
+    	printf(ESPACE);
+    	if (n == 1){
+    		printf("Entrer le 1er déplacement : ");
+    	}
+    	else{
+    		printf("Entrer le %dème déplacement : ", n);
+    	}
+    	videScanf();
+    	s = scanf("%c", &dep_Robots);
+    	while (s != 1 || (dep_Robots != 'Z' && dep_Robots != 'z'
+        	&& dep_Robots != 'S' && dep_Robots != 's'
+        	&& dep_Robots != 'Q' && dep_Robots != 'q'
+        	&& dep_Robots != 'D' && dep_Robots != 'd')){
+    		effacer_ligne();
+    		if (s != 1){
+		    	printf(ESPACE);
+		    	printf("Entrée incorrecte. Réessayez : ");
+		    	videScanf();
+		    	s = scanf("%c", &dep_Robots);
 		}
 		else if (dep_Robots != 'Z' || dep_Robots != 'z'
-    		|| dep_Robots != 'S' || dep_Robots != 's'
-            || dep_Robots != 'Q' || dep_Robots != 'q'
-    		|| dep_Robots != 'D' || dep_Robots != 'd'){
-    		printf(ESPACE);
-		    printf("Les caractères acceptés sont ZQSD. Réessayez : ");
-            videScanf();
-		    s = scanf("%c", &dep_Robots);
-    	}
-    }
-    return dep_Robots;
+    			|| dep_Robots != 'S' || dep_Robots != 's'
+            		|| dep_Robots != 'Q' || dep_Robots != 'q'
+    			|| dep_Robots != 'D' || dep_Robots != 'd'){
+    			printf(ESPACE);
+		    	printf("Les caractères acceptés sont ZQSD. Réessayez : ");
+            		videScanf();
+		    	s = scanf("%c", &dep_Robots);
+    		}
+   	}
+    	return dep_Robots;
 }
 
 // Choix du joueur
 Choix_Joueur choix_Joueur(Choix_Joueur cj, int joueurs){
     cj.j = 0;
+	if (joueurs <= 0){
+		exit(3);
+	}
     int s = 0; // Test scanf
     int d[4] = {0}; // Nombre de mouvement de chaque joueur
     int a = 0; // Nombre de joueurs à égalité
@@ -185,6 +188,9 @@ Choix_Joueur choix_Joueur(Choix_Joueur cj, int joueurs){
 
 // Compte à rebours pour effacer la grille
 void compteARebours(int t){
+	if (t <= 0){
+		exit(3);
+	}
 	printf(ESPACE);
 	printf("Veuillez ne rien taper dans la console avant la fin du chronomètre\n");
     while (t >= 0){
@@ -229,6 +235,9 @@ void affichageGagnant(Points_joueurs pts, int joueurs){
 	printf(ESPACE);
 	printf(ESPACE);
 	printf(ESPACE);
+	if (joueurs <= 0){
+		exit(3);
+	}
 	if (joueurs == 2){
 		if (pts.p1 < pts.p2){
 			printf("Gagnant : Joueur #2 !\n");
@@ -316,6 +325,9 @@ void affichageGagnant(Points_joueurs pts, int joueurs){
 void affichagePointsJoueurs(Points_joueurs pts, int joueurs){
     printf(ESPACE);
     printf(ESPACE);
+	if (joueurs <= 0){
+		exit(3);
+	}
     if (joueurs == 2){
         printf(ESPACE);
         printf(ESPACE);
@@ -339,6 +351,9 @@ void affichage_Jeu(Plateau p, Points_joueurs pts, Choix c, int manche, int nb, i
     printf(ESPACE);
     printf(ESPACE);
     printf(ESPACE);
+	if (nb <= 0 || manche <= 0 || joueurs <= 0){
+		exit(3);
+	}
     if (nb > 17){
         printf(ESPACE);
     }
