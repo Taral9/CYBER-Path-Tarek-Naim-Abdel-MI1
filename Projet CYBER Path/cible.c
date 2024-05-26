@@ -3,6 +3,9 @@
 // Vérifie les cases autour de la case spécifié et retourne 1 si toutes les cases sont vides, 0 sinon
 int casesVides(char** tab, int m, int n){
 	char vide = 1;
+	if (m < 0 || n < 0){
+		exit(4);
+	}
 	for (int i = m-1; i <= m+1; i++){
 		for (int j = n-1; j <= n+1; j++){
 			if (tab[i][j] != 0){
@@ -19,7 +22,10 @@ char** generer_Cibles(int nb) {
 	char** tab = NULL;
 	int a;
 	int b;
-    tab = generer_Tableau(nb);
+    	tab = generer_Tableau(nb);
+	if (tab == NULL){
+		exit(1);
+	}
 	for (int i = 0; i < nb; i++){
 		for (int j = 0; j < nb; j++){
 			tab[i][j] = 0;
