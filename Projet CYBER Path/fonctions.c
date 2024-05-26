@@ -6,6 +6,9 @@
 char** generer_Tableau(int nb){
 	char **tab = NULL;
 	tab = malloc(nb * sizeof(char*));
+	if (tab == NULL){
+		exit(1);
+	}
 	for (int i = 0; i < nb; i++){
 		*(tab+i) = malloc(nb * sizeof(char));
 	}
@@ -33,6 +36,9 @@ void videScanf(){
 
 Coordonnees chercher_Tableau(char** tab, int r, int nb){
 	Coordonnees co;
+	if (nb <= 0 || r < 0){
+		exit(3);
+	}
 	for (int i = 0; i < nb; i++){
 		for (int j = 0; j < nb; j++){
 			if (tab[i][j] == r){
@@ -50,6 +56,9 @@ void afficher_Grille(Plateau c, Choix ch, int N){
 	printf("\n");
 	char lettres[18] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R'};
 	char* couleur_robots[4] = {"37;41", "30;42", "30;43", "37;44"};
+	if (N <= 0){
+		exit(3);
+	}
 	for (int i = 0; i <= 2*N; i++){
 		printf(ESPACE);
 		printf(ESPACE);
