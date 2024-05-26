@@ -3,6 +3,9 @@
 // Vérifie les cases autour des murs à l'extrémité de la grille pour éviter d'avoir des cases sans issue avec 3 murs
 int casesVidesMurs(char** tab, int m, int n, int code){
 	int verif = 1;
+	if (code < 0 || m < 0 || n < 0){
+		exit(3);
+	}
 	switch (code){
 		case 5:
 			for (int i = m; i <= m+1; i++){
@@ -51,6 +54,9 @@ int casesVidesMurs(char** tab, int m, int n, int code){
 // Initialise correctement les murs de la case passé en paramètre
 // Codes -> 0 : Libre / 1 : Gauche / 2 : Haut / 3 : Droite / 4 : Bas / 5 : Gauche & haut / 6 : Haut & droite / 7 : Droite & bas / 8 : Bas & gauche / 9 : Haut & bas / 10 : Gauche & droite
 char** init_Murs(char** tab, int i, int j, int code, int nb){
+	if (nb <= 0 || code < 0 || i < 0 || j < 0){
+		exit(3);
+	}
 	tab[i][j] = code;
 	switch(code){
 		// Initialise les murs alentours dans le cas où le mur sur la case passée en paramètres est perpendiculaire à gauche et en haut
@@ -142,6 +148,12 @@ char** generer_Murs(char** cibles, int nb){
 	char** tab = NULL;
 	tab = generer_Tableau(nb);
 	char m1, m2;
+	if (tab == NULL){
+		exit(1);
+	}
+	if (nb <= 0){
+		exit(3);
+	}
 	// Génère les murs sur les bords de la grille
 	for (int i = 0; i < nb; i++){
 		for (int j = 0; j < nb; j++){
