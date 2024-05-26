@@ -3,6 +3,9 @@
 
 // Vérifie si la case est vide alors retourne 1, 0 sinon
 int caseVide(char** tab, int i, int j){
+	if (i < 0 || j < 0){
+		exit(3);
+	}
 	int rep = 1;
 	if (tab[i][j] != 0){
 		rep = 0;
@@ -13,6 +16,9 @@ int caseVide(char** tab, int i, int j){
 // Gère le déplacement des robots
 char** dep_Robots(Plateau p, Choix c, char dep, int nb){
 	Coordonnees co;
+	if (nb <= 0){
+		exit(3);
+	}
 	// Recherche dans le tableau des robots le robot demandé et récupère ses coordonnées
 	co = chercher_Tableau(p.robots, c.robot, nb);
 	// Gère le cas du déplacement vers le haut
@@ -69,6 +75,12 @@ char** generer_Robots(char** cibles, int nb) {
 	char** tab = NULL;
 	tab = generer_Tableau(nb);
     int a, b;
+	if (tab == NULL){
+		exit(1);
+	}
+	if (nb <= 0){
+		exit(3);
+	}
     for (int robots = 1; robots <= 4; robots++){
         do {
             a = generer_Nombre(1, nb-2);
