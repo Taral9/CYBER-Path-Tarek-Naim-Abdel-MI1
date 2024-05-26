@@ -9,6 +9,9 @@ char** generer_Tableau(int nb){
 	if (tab == NULL){
 		exit(1);
 	}
+	if (nb <= 0){
+		exit(3);
+	}
 	for (int i = 0; i < nb; i++){
 		*(tab+i) = malloc(nb * sizeof(char));
 	}
